@@ -1,0 +1,14 @@
+package page;
+
+
+import driver.DriverSingleton;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class BasePage {
+    protected WebDriver driver = DriverSingleton.getDriver();
+
+    protected BasePage() {
+        PageFactory.initElements(this.driver, this);
+    }
+}
