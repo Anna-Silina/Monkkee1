@@ -6,14 +6,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class AllureUtils {
-    public AllureUtils() {
-    }
-
-    @Attachment(
-            value = "screenshot",
-            type = "image/png"
-    )
+    @Attachment(value = "screenshot", type = "image/png")
     public static byte[] takeScreenshot(WebDriver driver) {
-        return (byte[])((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }

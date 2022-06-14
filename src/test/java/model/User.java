@@ -3,6 +3,7 @@ package model;
 public class User {
     private String email;
     private String password;
+
     private String passwordHint;
     private boolean checkBox1;
     private boolean checkBox2;
@@ -25,39 +26,46 @@ public class User {
     }
 
     public String getEmail() {
-        return this.email;
+
+        return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 
     public String getPasswordHint() {
-        return this.passwordHint;
+        return passwordHint;
     }
 
     public void setPasswordHint(String passwordHint) {
+
         this.passwordHint = passwordHint;
     }
 
     public boolean isCheckBox1() {
-        return this.checkBox1;
+
+        return checkBox1;
     }
 
     public void setCheckBox1(boolean checkBox1) {
+
         this.checkBox1 = checkBox1;
     }
 
     public boolean isCheckBox2() {
-        return this.checkBox2;
+
+        return checkBox2;
     }
 
     public void setCheckBox2(boolean checkBox2) {

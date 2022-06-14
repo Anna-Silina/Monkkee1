@@ -8,18 +8,15 @@ import page.SettingPage;
 public class SettingPageService {
     private SettingPage settingPage = new SettingPage();
 
-    public SettingPageService() {
-    }
-
     @Step("Open setting page")
     public EmailPage clickEmailLink() {
-        this.settingPage.clickEmailButton();
+        settingPage.clickEmailButton();
         return new EmailPage();
     }
 
     @Step("Open delete page")
     public DeletePage clickDeleteLink() {
-        this.settingPage.clickDeleteButton();
+        settingPage.clickDeleteButton();
         return new DeletePage();
     }
 }

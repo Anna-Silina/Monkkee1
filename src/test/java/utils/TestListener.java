@@ -14,36 +14,36 @@ import page.BasePage;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestListener extends BasePage implements ITestListener {
-    public TestListener() {
-    }
+public class TestListener extends BasePage implements ITestListener{
 
     public void onTestStart(ITestResult iTestResult) {
-        System.out.println(String.format("======================================== STARTING TEST %s ========================================", iTestResult.getName()));
+        System.out.println((String.format("======================================== STARTING TEST %s ========================================", iTestResult.getName())));
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
-        System.out.println(String.format("======================================== FINISHED TEST %s Duration: %ss ========================================", iTestResult.getName(), this.getExecutionTime(iTestResult)));
+        System.out.println(String.format("======================================== FINISHED TEST %s Duration: %ss ========================================", iTestResult.getName(),
+                getExecutionTime(iTestResult)));
     }
 
     public void onTestFailure(ITestResult iTestResult) {
-        System.out.println(String.format("======================================== FAILED TEST %s Duration: %ss ========================================", iTestResult.getName(), this.getExecutionTime(iTestResult)));
-        this.takeScreenshot(iTestResult);
+        System.out.println(String.format("======================================== FAILED TEST %s Duration: %ss ========================================", iTestResult.getName(),
+                getExecutionTime(iTestResult)));
+        takeScreenshot(iTestResult);
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
         System.out.println(String.format("======================================== SKIPPING TEST %s ========================================", iTestResult.getName()));
-        this.takeScreenshot(iTestResult);
+        takeScreenshot(iTestResult);
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
         System.out.println(String.format("======================================== SKIPPING TEST %s ========================================", iTestResult.getName()));
-        this.takeScreenshot(iTestResult);
+        takeScreenshot(iTestResult);
     }
 
     public void onTestFailedWithTimeout(ITestResult iTestResult) {
         System.out.println(String.format("======================================== SKIPPING TEST %s ========================================", iTestResult.getName()));
-        this.takeScreenshot(iTestResult);
+        takeScreenshot(iTestResult);
     }
 
     public void onStart(ITestContext iTestContext) {
@@ -52,20 +52,21 @@ public class TestListener extends BasePage implements ITestListener {
     public void onFinish(ITestContext iTestContext) {
     }
 
-    @Attachment(
-            value = "Last screen state",
-            type = "image/png"
-    )
+    @Attachment(value = "Last screen state", type = "image/png")
     private byte[] takeScreenshot(ITestResult iTestResult) {
-        ITestContext var2 = iTestResult.getTestContext();
-
+        ITestContext context = iTestResult.getTestContext();
         try {
-            this.driver = DriverSingleton.getDriver();
-            return this.driver != null ? (byte[])((TakesScreenshot)this.driver).getScreenshotAs(OutputType.BYTES) : new byte[0];
-        } catch (IllegalStateException | NoSuchSessionException var4) {
-            return new byte[0];
+            driver = DriverSingleton.getDriver();
+            if(driver != null) {
+                return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+            } else {
+                return new byte[] {};
+            }
+        } catch (NoSuchSessionException | IllegalStateException ex) {
+            return new byte[] {};
         }
     }
+
 
     private long getExecutionTime(ITestResult iTestResult) {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());

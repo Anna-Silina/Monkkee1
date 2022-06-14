@@ -6,12 +6,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
-
-import java.time.Duration;
-
+import dataProvider.ConfigReader;
 
 public class DriverSingleton {
-
     private static WebDriver driver;
 
     private DriverSingleton() {
@@ -19,12 +16,7 @@ public class DriverSingleton {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            switch (System.getProperty("browser")) {
-                case "chrome": {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    break;
-                }
+            switch (new ConfigReader().getBrowserName()) {
                 case "edge": {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
@@ -43,6 +35,7 @@ public class DriverSingleton {
                 default: {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
+                    break;
                 }
             }
             driver.manage().window().maximize();

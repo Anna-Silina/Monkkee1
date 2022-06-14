@@ -8,19 +8,20 @@ import page.SettingPage;
 
 public class AuthorizedPageService {
     private AuthorizationPage authorizedPage = new AuthorizationPage();
-
-    public AuthorizedPageService() {
-    }
-
     @Step("Open edit page")
     public EditorsPage clickEditLink() {
-        this.authorizedPage.clickEditButton();
+        authorizedPage.clickEditButton();
         return new EditorsPage();
     }
 
     @Step("Open setting page")
     public SettingPage clickSettingLink() {
-        this.authorizedPage.clickSettingButton();
+        authorizedPage.clickSettingButton();
         return new SettingPage();
     }
+
+    // метод: 1. вызвать метод авторизации
+    // 2. если не перейдёт на страницу, то открытие страницы, но должен сам
+    // 3. вызвать метод из registeredPage заполнение инпута поиска
+    // 4. из registeredPage метод нажатие кнопки поиск
 }

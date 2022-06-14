@@ -1,6 +1,7 @@
 package page;
 
-public class RegisteredPage extends BasePage {
-    public RegisteredPage() {
-    }
+public class RegisteredPage extends BasePage{
+    // тут надо: прописать элементы кнопка поиска, инпут для поиска, элемент с надписью нот фаунд
+    // Методы: заполнение поля поиска
+    // нажатие кнопки поиск
 }
