@@ -9,9 +9,10 @@ import java.util.Properties;
 public class ConfigReader {
     private final Properties properties;
 
+    // Считывание из файла config.properties
     public ConfigReader() {
         BufferedReader reader;
-        String propertyFilePath = "src/test/resources/config.properties";
+        String propertyFilePath = "src/test/resources/config.properties"; // путь к этому файлу
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));
             properties = new Properties();
@@ -27,7 +28,7 @@ public class ConfigReader {
         }
     }
 
-    public String getBrowserName() {
+    public String getBrowserName() { // метод для взятия имени браузера, через кот запуск
         String browser = properties.getProperty("browser");
         if (browser != null)
             return browser;

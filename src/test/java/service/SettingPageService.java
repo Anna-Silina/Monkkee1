@@ -2,32 +2,24 @@ package service;
 
 import driver.DriverSingleton;
 import io.qameta.allure.Step;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import page.AuthorizationPage;
 import page.DeletePage;
-import page.EmailPage;
-import page.MainPage;
 import page.SettingPage;
 
 public class SettingPageService {
-    private SettingPage settingPage = new SettingPage();
-    private DeletePage deletePage = new DeletePage();
-    private MainPageService mainPageService = new MainPageService();
-    private AuthorizedPageService authorizedPageService = new AuthorizedPageService();
+    private final SettingPage settingPage = new SettingPage();
+    private final DeletePage deletePage = new DeletePage();
+    private final MainPageService mainPageService = new MainPageService();
+    private final AuthorizationPage authorizedPage = new AuthorizationPage();
     WebDriverWait wait = new WebDriverWait(DriverSingleton.getDriver(), 15);
 
-    @Step("Open setting page")
-    public EmailPage clickEmailLink() {
-        settingPage.clickEmailButton();
-        return new EmailPage();
-    }
-
     @Step("Open delete page")
-    public DeletePage clickDeleteLink() {
+    public void clickDeleteLink() {
+        authorizedPage.clickSettingButton();
         settingPage.clickDeleteButton();
-        return new DeletePage();
     }
 
     @Step("Delete page")
@@ -38,9 +30,9 @@ public class SettingPageService {
     @Step("Change language")
     public void clickChangeLanguage() {
         mainPageService.authorization();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='selectLocale']"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '#/settings/locale')]"))).click();
 
-        authorizedPageService.clickSettingLink();
+        authorizedPage.clickSettingButton();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='selectLocale']"))).click();
 
         settingPage.clickLanguageSelect();

@@ -2,6 +2,9 @@ package test;
 
 import io.qameta.allure.Description;
 import model.User;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -16,21 +19,20 @@ public class RegisterPageTest extends BasePageTest {
         registerPageService = new RegisterPageService();
     }
 
-    @Test(description = "Login")
+    @Test(description = "Register")
     @Description("Create new Account")
-    public void regTest() throws InterruptedException { // Исправить
-        User user = new User("ulianakolosovich@gmail.com", StringConstants.PASSWORD, StringConstants.REMINDER, true, true); //заполни
+    public void regTest() {
+        User user = new User("ulianakolosovich@gmail.com", StringConstants.PASSWORD, StringConstants.REMINDER); //заполни
         registerPageService.register(user); // изменить новый логин, новую почту
-        String expectedURL = "https://my.monkkee.com/account/registered";
-        String actualURL = driver.getCurrentUrl();
-        //driver.wait(150000);
-        Assert.assertEquals(driver.getCurrentUrl(), expectedURL, "Account is not registered");
+        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[contains(text(),'User registered')]")));
+        String text = driver.findElement(By.xpath("//h1[contains(text(),'User registered')]")).getText();
+        Assert.assertEquals(text, "User registered");
     }
 
-    @Test(description = "Login")
+    @Test(description = "Negative register")
     @Description("Create Account with old parameters")
     public void negativeRegTest() {
-        User user = new User(StringConstants.EMAIL, StringConstants.PASSWORD, StringConstants.REMINDER, true, true); //заполни
+        User user = new User(StringConstants.EMAIL, StringConstants.PASSWORD, StringConstants.REMINDER); //заполни
         registerPageService.register(user);
         String expectedURL = "https://my.monkkee.com/account/registration";
         String actualURL = driver.getCurrentUrl();

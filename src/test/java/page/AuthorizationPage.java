@@ -3,42 +3,43 @@ package page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import utils.AllureUtils;
+import utils.Waiter;
 
 public class AuthorizationPage extends BasePage{
-    @FindBy(xpath = "//a[contains(@href, '/javascript:void(0)')]")
+    @FindBy(xpath = "//a[@id='create-entry']")
     private WebElement editButton;
-
-    @Step("Click button edit")
-    public void clickEditButton() {
-        editButton.click();
-    }
 
     @FindBy(xpath = "//a[contains(@href, '#/settings/locale')]")
     private WebElement settingButton;
 
-    @Step("Click button edit")
-    public void clickSettingButton() {
-        settingButton.click();
-    }
-
     @FindBy(xpath = "//a[contains(@href, '#/entries')]")
     private WebElement logotip;
-
-    @Step("Click button logo")
-    public String clickLogoButton() {
-        return logotip.getAttribute("href");
-    }
-
-
-    @FindBy(xpath = "//ya-tr-span[@data-value='No entries found']")
-    private WebElement elementNotFound;
 
     @FindBy(xpath = "//input[@id='appendedInputButton']")
     private WebElement searchInput;
 
-    @FindBy(xpath = "//button[@title='Search'")
+    @FindBy(xpath = "//button[@title='Search']")
     private WebElement searchButton;
+
+    @FindBy(xpath = "//input[contains(@class, 'ng-valid')]")
+    private WebElement selectElementForDelete;
+
+    @FindBy(xpath = "//a[@id='delete-entries']")
+    private WebElement deleteRecordButton;
+
+    @Step("Click button delete")
+    public void clickDeleteButton() {
+        Waiter.waitVisibilityOfElement(driver, deleteRecordButton);
+        deleteRecordButton.click();
+    }
+
+    @Step("Select element for delete")
+    public void clickSelectForDelete() {
+        Select select = new Select(selectElementForDelete);
+        select.selectByIndex(1);
+    }
 
     @Step("Click button send password reminder")
     public void clickSearchButton() {
@@ -47,8 +48,26 @@ public class AuthorizationPage extends BasePage{
 
     @Step("Fill email")
     public AuthorizationPage fillSearchField(String textForSearch) {
+        Waiter.waitVisibilityOfElement(driver, searchInput);
         searchInput.sendKeys(textForSearch);
-        AllureUtils.takeScreenshot(driver);
+        AllureUtils.takeScreenshot(driver); // может убрать
         return this;
+    }
+
+    @Step("Click button edit")
+    public void clickEditButton() {
+        Waiter.waitVisibilityOfElement(driver, editButton);
+        editButton.click();
+    }
+
+    @Step("Click button edit")
+    public void clickSettingButton() {
+        Waiter.waitVisibilityOfElement(driver, settingButton);
+        settingButton.click();
+    }
+
+    @Step("Click button logo")
+    public String clickLogoButton() {
+        return logotip.getAttribute("href");
     }
 }

@@ -5,32 +5,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.AllureUtils;
 import utils.StringConstants;
+import utils.Waiter;
 
 public class MainPage extends BasePage {
     @FindBy(xpath = "//a[contains(@href,'/account/registration')]")
     private WebElement registerButton;
 
+    @FindBy(className = "btn-primary")
+    private WebElement loginButton;
+
+    @FindBy(xpath = "//input[@id='login']")
+    private WebElement emailInput;
+
+    @FindBy(xpath = "//input[@id='password']")
+    private WebElement passwordInput;
 
     @Step("Click button register")
     public void clickRegisterButton() {
         registerButton.click();
-    }
-
-    @FindBy(xpath = "//a[contains(@href,'/account/password_reminder')]")
-    private WebElement sendPasswordReminderButton;
-
-
-    @Step("Click button send password reminder")
-    public void clickSendPasswordReminderButton() {
-        sendPasswordReminderButton.click();
-    }
-
-    @FindBy(xpath = "//a[contains(@href,'https://www.monkkee.com/en/support-us-with-a-donation/')]")
-    private WebElement sendFeedMonkkeeButton;
-
-    @Step("Click button send password reminder")
-    public void clickFeedMonkkeeButton() {
-        sendFeedMonkkeeButton.click();
     }
 
     @Step("Opening page auth Page")
@@ -40,15 +32,9 @@ public class MainPage extends BasePage {
         return new AuthorizationPage();
     }
 
-    @FindBy(xpath = "//input[@id='login']")
-    private WebElement emailInput;
-
-    @FindBy(xpath = "//input[@id='password']")
-    private WebElement passwordInput;
-
-
     @Step("Fill email")
     public MainPage fillEmailField(String email) {
+        Waiter.waitVisibilityOfElement(driver, emailInput);
         emailInput.sendKeys(email);
         AllureUtils.takeScreenshot(driver);
         return this;
@@ -56,14 +42,11 @@ public class MainPage extends BasePage {
 
     @Step("Fill password")
     public MainPage fillPasswordField(String password) {
+        Waiter.waitVisibilityOfElement(driver, passwordInput);
         passwordInput.sendKeys(password);
         AllureUtils.takeScreenshot(driver);
         return this;
     }
-
-    @FindBy(className = "btn-primary") // TODO: поискать, как писать
-    private WebElement loginButton;
-
 
     @Step("Click button login")
     public void clickLoginButton() {

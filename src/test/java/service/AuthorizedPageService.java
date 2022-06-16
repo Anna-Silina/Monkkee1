@@ -1,39 +1,36 @@
 package service;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import page.AuthorizationPage;
 import page.EditorsPage;
-import page.FeedTheMonkkeePage;
 import page.SettingPage;
 import utils.StringConstants;
+import utils.Waiter;
 
 public class AuthorizedPageService {
-    private AuthorizationPage authorizedPage = new AuthorizationPage();
-    private MainPageService mainPageService = new MainPageService();
-
-    @Step("Open edit page")
-    public EditorsPage clickEditLink() {
-        authorizedPage.clickEditButton();
-        return new EditorsPage();
-    }
-
-    @Step("Open setting page")
-    public SettingPage clickSettingLink() {
-        authorizedPage.clickSettingButton();
-        return new SettingPage();
-    }
+    private final AuthorizationPage authorizedPage = new AuthorizationPage();
+    private final EditorsPage editorsPage = new EditorsPage();
 
     @Step("Search field")
-    public void search() {
-        mainPageService.authorization();
-        authorizedPage.fillSearchField(StringConstants.FOR_SEARCH_FIELD)
+    public void search(String textForSearch) {
+        authorizedPage.fillSearchField(textForSearch)
                 .clickSearchButton();
     }
 
-    @Step("Wrong search field")
-    public void wrongSearch() {
-        mainPageService.authorization();
-        authorizedPage.fillSearchField(StringConstants.WRONG_FOR_SEARCH_FIELD)
-                .clickSearchButton();
+    @Step("Add")
+    public void add(String textForAdd) {
+        authorizedPage.clickEditButton();
+        editorsPage.fillEditField(textForAdd);
+        editorsPage.clickSaveButton();
+        editorsPage.clickHomeButton();
+    }
+
+    @Step("Delete")
+    public void deleteRecord() {
+        authorizedPage.clickSelectForDelete();
+        authorizedPage.clickDeleteButton();
     }
 }

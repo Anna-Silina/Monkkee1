@@ -16,7 +16,7 @@ public class DriverSingleton {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            switch (new ConfigReader().getBrowserName()) {
+            switch (new ConfigReader().getBrowserName()) { // вызываем конструктор, потом метод для взятия имени браузера
                 case "edge": {
                     WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();

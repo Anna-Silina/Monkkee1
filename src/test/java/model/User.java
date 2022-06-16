@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter // аннотации из ломбока, для сокращения кода
 @Setter
-@Getter
 @AllArgsConstructor
 public class User {
     private String email;
     private String password;
     private String passwordHint;
-    private boolean checkBox1;
-    private boolean checkBox2;
 }

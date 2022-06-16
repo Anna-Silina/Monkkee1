@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.AllureUtils;
 import utils.StringConstants;
+import utils.Waiter;
 
 public class RegisterPage extends BasePage {
     @FindBy(id = "registration_email")
@@ -23,10 +24,10 @@ public class RegisterPage extends BasePage {
     private WebElement registerButton;
 
     @FindBy(id = "registration_terms_of_use")
-    private WebElement checkBox1;
+    private WebElement checkBox1; // переименовать
 
     @FindBy(id = "registration_lost_password_warning_registered")
-    private WebElement checkBox2;
+    private WebElement checkBox2; // переименовать
 
     @Step("Click button ok")
     public void clickOkButton() {
@@ -35,6 +36,7 @@ public class RegisterPage extends BasePage {
 
     @Step("Fill email")
     public RegisterPage fillEmailField(String email) {
+        Waiter.waitVisibilityOfElement(driver, emailInput);
         emailInput.sendKeys(email);
         AllureUtils.takeScreenshot(driver);
         return this;
@@ -73,13 +75,6 @@ public class RegisterPage extends BasePage {
         checkBox2.click();
         AllureUtils.takeScreenshot(driver);
         return this;
-    }
-
-    @Step("Open new page")
-    public RegisteredPage openNewPage() {
-        driver.get(StringConstants.REGISTERED_URL);
-        AllureUtils.takeScreenshot(driver);
-        return new RegisteredPage();
     }
 
     @Step("Open register page")

@@ -17,6 +17,7 @@ public class DropDown extends BasePage {
         this.label = label;
     }
 
+    // выносим метод общий, в кот передаются параметры, чтобы уменьшить код, ООП))))
     public void selectOption(String option) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format(DROP_DOWN_XPATH, label)))).click();
         driver.findElement(By.xpath(String.format(SELECT_OPTION_XPATH, option))).click();
