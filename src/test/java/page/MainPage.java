@@ -8,29 +8,29 @@ import utils.StringConstants;
 
 public class MainPage extends BasePage {
     @FindBy(xpath = "//a[contains(@href,'/account/registration')]")
-    private WebElement register;
+    private WebElement registerButton;
 
 
     @Step("Click button register")
     public void clickRegisterButton() {
-        register.click();
+        registerButton.click();
     }
 
     @FindBy(xpath = "//a[contains(@href,'/account/password_reminder')]")
-    private WebElement sendPasswordReminder;
+    private WebElement sendPasswordReminderButton;
 
 
     @Step("Click button send password reminder")
     public void clickSendPasswordReminderButton() {
-        sendPasswordReminder.click();
+        sendPasswordReminderButton.click();
     }
 
     @FindBy(xpath = "//a[contains(@href,'https://www.monkkee.com/en/support-us-with-a-donation/')]")
-    private WebElement sendFeedMonkkee;
+    private WebElement sendFeedMonkkeeButton;
 
     @Step("Click button send password reminder")
     public void clickFeedMonkkeeButton() {
-        sendFeedMonkkee.click();
+        sendFeedMonkkeeButton.click();
     }
 
     @Step("Opening page auth Page")
@@ -61,14 +61,13 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    // тоже 2 метода, как сверху, меняются параметры
     @FindBy(className = "btn-primary") // TODO: поискать, как писать
-    private WebElement login;
+    private WebElement loginButton;
 
 
     @Step("Click button login")
     public void clickLoginButton() {
-        login.click();
+        loginButton.click();
     }
 
     @Step("Open register page")

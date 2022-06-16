@@ -1,10 +1,12 @@
 package test;
 
 import io.qameta.allure.Description;
+import model.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import service.RegisterPageService;
+import utils.StringConstants;
 
 public class RegisterPageTest extends BasePageTest {
     private RegisterPageService registerPageService;
@@ -16,26 +18,20 @@ public class RegisterPageTest extends BasePageTest {
 
     @Test(description = "Login")
     @Description("Create new Account")
-    public void regTest() {
-        registerPageService.register();
-        String expectedURL = "/account/registered";
+    public void regTest() throws InterruptedException { // Исправить
+        User user = new User("ulianakolosovich@gmail.com", StringConstants.PASSWORD, StringConstants.REMINDER, true, true); //заполни
+        registerPageService.register(user); // изменить новый логин, новую почту
+        String expectedURL = "https://my.monkkee.com/account/registered";
         String actualURL = driver.getCurrentUrl();
-        Assert.assertTrue(actualURL.contains(expectedURL), "Account is not registered");
+        //driver.wait(150000);
+        Assert.assertEquals(driver.getCurrentUrl(), expectedURL, "Account is not registered");
     }
 
     @Test(description = "Login")
     @Description("Create Account with old parameters")
     public void negativeRegTest() {
-        registerPageService.register();
-        String expectedURL = "https://my.monkkee.com/account/registration";
-        String actualURL = driver.getCurrentUrl();
-        Assert.assertEquals(actualURL, expectedURL, "Account is registered");
-    }
-
-    @Test(description = "Research")
-    @Description("Research with null result")
-    public void researchNotFoundTest() {
-        registerPageService.register();
+        User user = new User(StringConstants.EMAIL, StringConstants.PASSWORD, StringConstants.REMINDER, true, true); //заполни
+        registerPageService.register(user);
         String expectedURL = "https://my.monkkee.com/account/registration";
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedURL, "Account is registered");

@@ -20,6 +20,7 @@ public class StringConstants {
 
     //label
     public static final String WEB_SITE_FIELD = "Website";
-
+    public static final String WRONG_FOR_SEARCH_FIELD = "qwerty";
+    public static final String FOR_SEARCH_FIELD = "welcome";
 
 }
