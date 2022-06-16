@@ -1,7 +1,9 @@
 package page;
 
+import io.qameta.allure.Step;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import utils.AllureUtils;
+
 public class RegisteredPage extends BasePage{
-    // тут надо: прописать элементы кнопка поиска, инпут для поиска, элемент с надписью нот фаунд
-    // Методы: заполнение поля поиска
-    // нажатие кнопки поиск
 }

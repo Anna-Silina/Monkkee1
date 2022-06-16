@@ -5,9 +5,12 @@ import page.AuthorizationPage;
 import page.EditorsPage;
 import page.FeedTheMonkkeePage;
 import page.SettingPage;
+import utils.StringConstants;
 
 public class AuthorizedPageService {
     private AuthorizationPage authorizedPage = new AuthorizationPage();
+    private MainPageService mainPageService = new MainPageService();
+
     @Step("Open edit page")
     public EditorsPage clickEditLink() {
         authorizedPage.clickEditButton();
@@ -20,8 +23,17 @@ public class AuthorizedPageService {
         return new SettingPage();
     }
 
-    // метод: 1. вызвать метод авторизации
-    // 2. если не перейдёт на страницу, то открытие страницы, но должен сам
-    // 3. вызвать метод из registeredPage заполнение инпута поиска
-    // 4. из registeredPage метод нажатие кнопки поиск
+    @Step("Search field")
+    public void search() {
+        mainPageService.authorization();
+        authorizedPage.fillSearchField(StringConstants.FOR_SEARCH_FIELD)
+                .clickSearchButton();
+    }
+
+    @Step("Wrong search field")
+    public void wrongSearch() {
+        mainPageService.authorization();
+        authorizedPage.fillSearchField(StringConstants.WRONG_FOR_SEARCH_FIELD)
+                .clickSearchButton();
+    }
 }

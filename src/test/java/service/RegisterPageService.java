@@ -8,9 +8,7 @@ import utils.StringConstants;
 public class RegisterPageService {
     private RegisterPage registerPage = new RegisterPage();
 
-    public void register(){
-        User user = new User(StringConstants.EMAIL, StringConstants.PASSWORD, StringConstants.REMINDER, true, true); //заполни
-
+    public void register(User user){
         registerPage.openRegPage()
                 .fillEmailField(user.getEmail())
                 .fillPasswordField(user.getPassword())
