@@ -10,7 +10,7 @@ import page.SettingPage;
 import utils.StringConstants;
 import utils.Waiter;
 
-public class AuthorizedPageService {
+public class AuthorizedPageService { //бизнес логику проптсываем
     private final AuthorizationPage authorizedPage = new AuthorizationPage();
     private final EditorsPage editorsPage = new EditorsPage();
 

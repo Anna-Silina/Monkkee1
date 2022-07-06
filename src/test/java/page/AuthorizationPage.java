@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import utils.AllureUtils;
 import utils.Waiter;
 
-public class AuthorizationPage extends BasePage{
+public class AuthorizationPage extends BasePage{ // взоимодействие элементов со страницами
     @FindBy(xpath = "//a[@id='create-entry']")
     private WebElement editButton;
 
