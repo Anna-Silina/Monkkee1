@@ -8,7 +8,7 @@ public class MainPageService {
     private final MainPage mainPage = new MainPage();
 
     public AuthorizationPage authorization() {
-        User user = new User(StringConstants.EMAIL, StringConstants.PASSWORD, StringConstants.REMINDER); //заполни
+        User user = new User(StringConstants.EMAIL, StringConstants.PASSWORD, StringConstants.REMINDER);
         mainPage.openMain()
                 .fillEmailField(user.getEmail())
                 .fillPasswordField(user.getPassword())
@@ -18,7 +18,7 @@ public class MainPageService {
     }
 
     public void negativeAuthorization() {
-        User user = new User(StringConstants.NEG_EMAIL, StringConstants.NEG_PASSWORD, StringConstants.REMINDER); //заполни
+        User user = new User(StringConstants.NEG_EMAIL, StringConstants.NEG_PASSWORD, StringConstants.REMINDER);
         mainPage.openMain()
                 .fillEmailField(user.getEmail())
                 .fillPasswordField(user.getPassword())

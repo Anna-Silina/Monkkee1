@@ -24,10 +24,10 @@ public class RegisterPage extends BasePage {
     private WebElement registerButton;
 
     @FindBy(id = "registration_terms_of_use")
-    private WebElement checkBox1; // переименовать
+    private WebElement checkBox1;
 
     @FindBy(id = "registration_lost_password_warning_registered")
-    private WebElement checkBox2; // переименовать
+    private WebElement checkBox2;
 
     @Step("Click button ok")
     public void clickOkButton() {

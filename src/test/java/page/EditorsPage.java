@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.AllureUtils;
 import utils.Waiter;
 
-// страница редактирования, добавление записей
+
 public class EditorsPage extends BasePage {
     @FindBy(xpath = "//div[@id='editable']")
     private WebElement editInput;

@@ -33,8 +33,5 @@ public class AuthorizedPageService {
         authorizedPage.clickSelectForDelete();
         authorizedPage.clickDeleteButton();
     }
-    //@Step("Logout")
-    //public void logout() {
-       // authorizedPage.clickLogoutButton();
 
     }

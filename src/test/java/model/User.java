@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter // аннотации из ломбока, для сокращения кода
+@Getter
 @Setter
 @AllArgsConstructor
 public class User {

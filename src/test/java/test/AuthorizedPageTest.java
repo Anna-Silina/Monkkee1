@@ -19,7 +19,7 @@ public class AuthorizedPageTest extends BasePageTest {
 
     @BeforeTest
     public void setUp() {
-        mainPageService = new MainPageService(); // создаём объект
+        mainPageService = new MainPageService();
         authorizedPageService = new AuthorizedPageService();
         settingPageService = new SettingPageService();
 
@@ -27,7 +27,7 @@ public class AuthorizedPageTest extends BasePageTest {
     }
 
     @Test(description = "Search")
-    @Description("Search") // тестовое описание
+    @Description("Search")
     public void searchTest() {
         // mainPageService.authorization();
         authorizedPageService.search(StringConstants.FOR_SEARCH_FIELD);
@@ -58,26 +58,4 @@ public class AuthorizedPageTest extends BasePageTest {
         settingPageService.clickHome();
     }
 
-    /*@Test(description = "Add")
-    @Description("Add")
-    public void addTest() {
-        // mainPageService.authorization();
-        authorizedPageService.add(StringConstants.FOR_ADD_FIELD);
-        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@class, 'entry')]")));
-        String text = driver.findElements(By.xpath("//a[contains(@class, 'entry')]")).get(0).getText();
-        Assert.assertEquals(text, StringConstants.FOR_ADD_FIELD);
-    }
-
-    // досмотреть
-   /* @Test(description = "Delete record")
-    @Description("Delete record test")
-    public void deleteRecordTest() {
-        //mainPageService.authorization();
-        authorizedPageService.add(StringConstants.FOR_DELETE_FIELD);
-        authorizedPageService.deleteRecord();
-        authorizedPageService.search(StringConstants.FOR_DELETE_FIELD);
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'none centered')]")));
-        String text = driver.findElement(By.xpath("//div[contains(@class,'none centered')]")).getText();
-        Assert.assertEquals(text, "No entries found");
-    }*/
 }
