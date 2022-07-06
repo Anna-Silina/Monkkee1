@@ -58,7 +58,7 @@ public class AuthorizedPageTest extends BasePageTest {
         settingPageService.clickHome();
     }
 
-    @Test(description = "Add")
+    /*@Test(description = "Add")
     @Description("Add")
     public void addTest() {
         // mainPageService.authorization();
