@@ -23,25 +23,25 @@ public class MainPageTest extends BasePageTest {
         mainPageService = new MainPageService();
         authorizedPageService = new AuthorizedPageService();
         settingPageService = new SettingPageService();
-        authorizationPage = mainPageService.authorization();
     }
 
     @Test(description = "Login")
     @Description("Fill all fields on main page and login with correct parameters")
-    public void loginTest() {
+    public void bloginTest() {
+        authorizationPage = mainPageService.authorization();
         String expectedURL = "https://my.monkkee.com/#/entries";
         String actualURL = authorizationPage.clickLogoButton();
         Assert.assertEquals(actualURL, expectedURL, "U didn`t log in");
     }
 
-   /* @Test(description = "Login")
+    @Test(description = "Login")
     @Description("Fill all fields on main page and login with incorrect parameters")
-    public void negativeLoginTest() {
+    public void anegativeLoginTest() {
         mainPageService.negativeAuthorization();
         String expectedURL = "https://my.monkkee.com/#/";
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedURL, "U log in with incorrect parameters");
-    }*/
+    }
 
     @Test(description = "Login")
     @Description("Delete test")
