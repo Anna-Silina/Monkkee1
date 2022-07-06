@@ -63,7 +63,7 @@ public class AuthorizedPageTest extends BasePageTest {
     public void addTest() {
         // mainPageService.authorization();
         authorizedPageService.add(StringConstants.FOR_ADD_FIELD);
-        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@class, 'entry')]")));
+        new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@class, 'entry')]")));
         String text = driver.findElements(By.xpath("//a[contains(@class, 'entry')]")).get(0).getText();
         Assert.assertEquals(text, StringConstants.FOR_ADD_FIELD);
     }

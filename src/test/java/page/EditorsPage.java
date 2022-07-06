@@ -24,7 +24,7 @@ public class EditorsPage extends BasePage {
     public void clickHomeButton() {
         String text;
         do {
-            new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class,'cke_savetoggle_text')]")));
+            new WebDriverWait(driver, 30).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class,'cke_savetoggle_text')]")));
             text = driver.findElement(By.xpath("//span[contains(@class,'cke_savetoggle_text')]")).getText();
         } while (text.equals("unsaved"));
         Waiter.waitVisibilityOfElement(driver, homeButton);
