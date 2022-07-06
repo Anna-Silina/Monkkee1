@@ -24,7 +24,7 @@ public class MainPageTest extends BasePageTest {
         settingPageService = new SettingPageService();
     }
 
-    @Test(description = "Login")
+    /*@Test(description = "Login")
     @Description("Fill all fields on main page and login with correct parameters")
     public void loginTest() {
         AuthorizationPage authorizationPage = mainPageService.authorization();
@@ -52,5 +52,5 @@ public class MainPageTest extends BasePageTest {
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'alert-success')]")));
         String text = driver.findElement(By.xpath("//div[contains(@class,'alert-success')]")).getText();
         Assert.assertEquals(text, "You will receive an email with a confirmation link. Please follow the instructions in this email. Please also check your Spam folder!");
-    }
+    }*/
 }

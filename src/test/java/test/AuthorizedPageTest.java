@@ -69,7 +69,7 @@ public class AuthorizedPageTest extends BasePageTest {
     }
 
     // досмотреть
-    @Test(description = "Delete record")
+   /* @Test(description = "Delete record")
     @Description("Delete record test")
     public void deleteRecordTest() {
         //mainPageService.authorization();
@@ -79,5 +79,5 @@ public class AuthorizedPageTest extends BasePageTest {
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'none centered')]")));
         String text = driver.findElement(By.xpath("//div[contains(@class,'none centered')]")).getText();
         Assert.assertEquals(text, "No entries found");
-    }
+    }*/
 }
