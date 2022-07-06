@@ -19,7 +19,7 @@ public class RegisterPageTest extends BasePageTest {
         registerPageService = new RegisterPageService();
     }
 
-   /* @Test(description = "Register")
+    @Test(description = "Register")
     @Description("Create new Account")
     public void regTest() {
         User user = new User("ulianakolosovich@gmail.com", StringConstants.PASSWORD, StringConstants.REMINDER); //заполни
@@ -37,5 +37,5 @@ public class RegisterPageTest extends BasePageTest {
         String expectedURL = "https://my.monkkee.com/account/registration";
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedURL, "Account is registered");
-    }*/
+    }
 }
