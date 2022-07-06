@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Smoke">
-    <test name="Login Test">
+    <test name="LoginTest">
         <classes>
             <class name="test.MainPageTest" />
+        </classes>
+    </test>
+    <test name="AuthorizedPageTest">
+        <classes>
+            <class name="test.AuthorizedPageTest" />
         </classes>
     </test>
     <test name="Create New Account Test">
