@@ -27,15 +27,20 @@ public class SettingPageService {
         deletePage.clickDeleteButton();
     }
 
+    @Step("Home page")
+    public void clickHome() {
+        settingPage.clickHome();
+    }
+
     @Step("Change language")
-    public void clickChangeLanguage() {
-        mainPageService.authorization();
+    public void clickChangeLanguage(String lang) {
+        //mainPageService.authorization();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '#/settings/locale')]"))).click();
 
         authorizedPage.clickSettingButton();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//select[@name='selectLocale']"))).click();
 
-        settingPage.clickLanguageSelect();
+        settingPage.clickLanguageSelect(lang);
         settingPage.clickOkButton();
     }
 }

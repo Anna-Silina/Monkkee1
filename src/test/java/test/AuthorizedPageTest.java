@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import page.EditorsPage;
 import service.AuthorizedPageService;
 import service.MainPageService;
 import service.SettingPageService;
@@ -23,13 +22,16 @@ public class AuthorizedPageTest extends BasePageTest {
         mainPageService = new MainPageService(); // создаём объект
         authorizedPageService = new AuthorizedPageService();
         settingPageService = new SettingPageService();
+
+        mainPageService.authorization();
     }
 
     @Test(description = "Search")
     @Description("Search") // тестовое описание
     public void searchTest() {
-        mainPageService.authorization();
+        // mainPageService.authorization();
         authorizedPageService.search(StringConstants.FOR_SEARCH_FIELD);
+        new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '#/entries/2835129')]")));
         String text = driver.findElement(By.xpath("//a[contains(@href, '#/entries/2835129')]")).getText();
         Assert.assertEquals(text, "Welcome to monkkee!\n" +
                 "We wish you a great time with monkkee! If you need help, use the link to the support page or the FAQs at the bottom of the page. Regards Your monkkee team");
@@ -38,7 +40,7 @@ public class AuthorizedPageTest extends BasePageTest {
     @Test(description = "Search")
     @Description("Wrong Search")
     public void searchNotFoundTest() {
-        mainPageService.authorization();
+        // mainPageService.authorization();
         authorizedPageService.search(StringConstants.WRONG_FOR_SEARCH_FIELD);
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'none centered')]")));
         String text = driver.findElement(By.xpath("//div[contains(@class,'none centered')]")).getText();
@@ -48,16 +50,18 @@ public class AuthorizedPageTest extends BasePageTest {
     @Test(description = "Change language")
     @Description("Change language on Deutsch")
     public void changeLanguageTest() {
-        settingPageService.clickChangeLanguage();
+        settingPageService.clickChangeLanguage("Deutsch");
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'alert-success')]")));
         String text = driver.findElement(By.xpath("//div[contains(@class,'alert-success')]")).getText();
         Assert.assertEquals(text, "Deine Spracheinstellung wurde erfolgreich geändert");
+        settingPageService.clickChangeLanguage("English");
+        settingPageService.clickHome();
     }
 
     @Test(description = "Add")
     @Description("Add")
     public void addTest() {
-        mainPageService.authorization();
+        // mainPageService.authorization();
         authorizedPageService.add(StringConstants.FOR_ADD_FIELD);
         new WebDriverWait(driver, 15).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@class, 'entry')]")));
         String text = driver.findElements(By.xpath("//a[contains(@class, 'entry')]")).get(0).getText();
@@ -68,7 +72,7 @@ public class AuthorizedPageTest extends BasePageTest {
     @Test(description = "Delete record")
     @Description("Delete record test")
     public void deleteRecordTest() {
-        mainPageService.authorization();
+        //mainPageService.authorization();
         authorizedPageService.add(StringConstants.FOR_DELETE_FIELD);
         authorizedPageService.deleteRecord();
         authorizedPageService.search(StringConstants.FOR_DELETE_FIELD);

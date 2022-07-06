@@ -16,10 +16,19 @@ public class SettingPage extends BasePage {
     @FindBy(xpath = "//button[contains(@class,'btn-primary')]")
     private WebElement okButton;
 
+    @FindBy(xpath = "//a[@title='Back to overview']") // TODO:
+    private WebElement homeButton;
+
     @Step("Click button language")
-    public void clickLanguageSelect() {
+    public void clickLanguageSelect(String lang) {
         Select select = new Select(languageSelect);
-        select.selectByVisibleText("Deutsch");
+        select.selectByVisibleText(lang);
+    }
+
+    @Step("Click button home")
+    public void clickHome() {
+        Waiter.waitVisibilityOfElement(driver, homeButton);
+        homeButton.click();
     }
 
     @Step("Click button language")

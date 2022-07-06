@@ -49,6 +49,7 @@ public class AuthorizationPage extends BasePage{
     @Step("Fill email")
     public AuthorizationPage fillSearchField(String textForSearch) {
         Waiter.waitVisibilityOfElement(driver, searchInput);
+        searchInput.clear();
         searchInput.sendKeys(textForSearch);
         AllureUtils.takeScreenshot(driver); // может убрать
         return this;
